@@ -1,0 +1,4 @@
+-> only for Directed acyclic Graph(DAG)
+
+->defined as an order where if adge to u and v exists
+u appears before v
