@@ -56,6 +56,59 @@ public:
     }
 };
 
+class Using_TopoSort {
+    
+  
+
+   
+public:
+    vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
+
+        int V=graph.size();
+        vector<vector<int>> rgraph(V);
+        vector<int> indeg(V,0), a(V,0);
+
+        for(int i=0;i<graph.size();i++){
+            for(int j=0;j<graph[i].size();j++){
+                rgraph[graph[i][j]].push_back(i);
+                indeg[i]++;
+            }
+
+        }
+        
+        
+        queue<int> q;
+        for(int i=0;i<V;i++){
+            if(indeg[i]==0){ q.push(i);
+            
+            a[i]=1;
+            
+            }
+        }
+        vector<int> ans;
+
+        
+        while(!q.empty()){
+            int cur=q.front();
+            q.pop();
+            for(int i: rgraph[cur]){
+                
+                
+                indeg[i]--;
+                if(indeg[i]==0){ q.push(i);
+                  a[i]  =1;
+                }
+            }
+        }
+        for(int i=0;i<V;i++){
+
+
+         if(a[i]) ans.push_back(i);
+        }
+        return ans;
+    }
+};
+
 int main (){
     
     return 0;
