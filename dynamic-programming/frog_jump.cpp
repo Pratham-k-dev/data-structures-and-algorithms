@@ -19,7 +19,7 @@ class Solution {
         vector<int> dp(n,-1);
         return f(n-1,height,dp);
     }
-    int minCost2(vector<int> &height){ // tabulation (down to , no stack space)
+    int minCost2(vector<int> &height){ // tabulation (down to up , no stack space)
         int n=height.size();
         vector<int> dp (n,0);
         for(int i=1;i<n;i++){
