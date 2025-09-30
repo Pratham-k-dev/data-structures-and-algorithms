@@ -1,3 +1,4 @@
+//https://leetcode.com/problems/cherry-pickup-ii/description/
 #include<bits/stdc++.h>
 using namespace std;
 class Solution {
@@ -10,6 +11,8 @@ public:
         vector<vector<int>> prev (m,vector<int>(m,-1));
         vector<vector<int>> cur (m,vector<int>(m,-1));
         prev[0][m-1]=grid[0][0]+grid[0][m-1];
+
+        // (j1,j2)=> column of robot1,robot 2
         for(int i=1;i<n;i++){
             for(int j1=0;j1<m;j1++){
                 for(int j2=0;j2<m;j2++){
