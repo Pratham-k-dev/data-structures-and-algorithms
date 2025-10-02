@@ -91,6 +91,32 @@ public:
     }
 };
 
+//count subset sum==k :
+ int f(int i, int t, vector<int> &arr, vector<vector<int>> &dp)
+    {
+        
+        if (i < 0)
+            return t==0;
+       
+
+        if (dp[i][t] != -1)
+            return dp[i][t];
+        int notpick = f(i - 1, t, arr, dp);
+        int pick = 0;
+        if (t >= arr[i])
+            pick = f(i - 1, t - arr[i], arr, dp);
+        return dp[i][t] = (pick + notpick);
+    }
+  
+    int perfectSum(vector<int>& arr, int sum) {
+        // code here
+        int n = arr.size();
+        vector<vector<int>> dp(n, vector<int>(sum + 1, -1));
+
+        return f(n - 1, sum, arr, dp);
+        
+    }
+
 int main()
 {
 
