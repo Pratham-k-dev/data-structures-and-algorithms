@@ -1,3 +1,6 @@
+
+//https://www.geeksforgeeks.org/problems/number-of-coins1824/1
+//https://leetcode.com/problems/coin-change/description/
 #include <bits/stdc++.h>
 
 #define tc()  \
@@ -6,19 +9,23 @@
     while (t--)
 using namespace std;
 int f(int i, int sum, vector<int> &coins, vector<vector<int>> &dp)
-{
-    if (i >= coins.size() || sum < 0)
+{   
+    if(i<0){
+        if(sum==0) return 0;
+        return 1e5;
+    }
+    if ( sum < 0)
         return 1e5;
     if (sum == 0)
         return dp[i][sum] = 0;
 
     if (dp[i][sum] != -1)
         return dp[i][sum];
-    int x = 1 + f(i, sum - coins[i], coins, dp);
-    int y = f(i - 1, sum, coins, dp);
-    int z = 1 + f(i - 1, sum - coins[i], coins, dp);
+    int x = 1 + f(i, sum - coins[i], coins, dp); //take
+    int y = f(i - 1, sum, coins, dp); //not take
+    
 
-    return dp[i][sum] = min(min(x, y), z);
+    return dp[i][sum] = min(x,y);
 }
 
 int minCoins(vector<int> &coins, int sum)
@@ -38,22 +45,18 @@ int minCoins2(vector<int> &coins, int sum)
 
     int n = coins.size();
 
-    vector<vector<int>> dp(n, vector<int>(sum + 1, -1));
+    vector<vector<int>> dp(n, vector<int>(sum + 1, 0));
     for (int i = 0; i < n; i++)
     {
-        for (int tar = 0; tar <= sum; tar++)
+        for (int tar = 1; tar <= sum; tar++)
         {
-            if (tar == 0)
-            {
-                dp[i][tar] = 0;
-                continue;
-            }
+            
 
-            int x = 1e5, y = 1e5, z = 1e5;
-           if(coins[i]<=tar) x = 1 + dp[i][tar - coins[i]];
-           if(i>=1) y = dp[i - 1][tar];
-           if(i>=1 && tar>=coins[i]) z = 1 + dp[i - 1][tar - coins[i]];
-            dp[i][tar] = min(min(x, y), z);
+            int x = 1e5, y = 1e5;
+           if(coins[i]<=tar) x = 1 + dp[i][tar - coins[i]]; // take
+           if(i>=1) y = dp[i - 1][tar]; //not take
+           
+            dp[i][tar] = min(x,y);
         }
     }
     return dp[n-1][sum];
@@ -68,15 +71,15 @@ int minCoinsOpt(vector<int> &coins,int sum){// space optimized
     
     for (int i = 0; i < n; i++)
     {
-        for (int tar = 0; tar <=sum; tar++)
+        for (int tar = 1; tar <=sum; tar++)
         {
             
 
-            int x = 1e5, y = 1e5, z = 1e5;
+            int x = 1e5, y = 1e5;
            if(coins[i]<=tar) x = 1 + cur[tar - coins[i]];
            if(i>=1) y = prev[tar];
-           if(i>=1 && tar>=coins[i]) z = 1 + prev[tar - coins[i]];
-            cur[tar] = min(min(x, y), z);
+           
+            cur[tar] = min(x,y);
         }
         prev=cur;
         
