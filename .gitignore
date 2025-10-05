@@ -1,2 +1,4 @@
 graphs/graphs/
 dynamic-programming/.vscode/settings.json
+*.exe
+dynamic-programming/cf.cpp
