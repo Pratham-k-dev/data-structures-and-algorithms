@@ -1,4 +1,7 @@
-//https://leetcode.com/problems/longest-common-subsequence/
+//https://leetcode.com/problems/longest-common-subsequence/cf
+
+
+// to print LCS refer : https://www.geeksforgeeks.org/dsa/printing-longest-common-subsequence/
 #include<bits/stdc++.h>
 using namespace std;
  int f(int i1,int i2,string &s1,string &s2,vector<vector<int>> &dp){ // longest fron s1[0 to i1],s2[0 to i2]
