@@ -2,3 +2,7 @@ graphs/graphs/
 dynamic-programming/.vscode/settings.json
 *.exe
 dynamic-programming/cf.cpp
+*.prob
+sliding window,pref sum,greedy/tempCodeRunnerFile.cpp
+*.cpp
+*.json
