@@ -1,3 +1,4 @@
+//https://leetcode.com/problems/minimum-jumps-to-reach-end-via-prime-teleportation/
 #include<bits/stdc++.h>
 using namespace std;
 class Solution {
