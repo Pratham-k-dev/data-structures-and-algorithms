@@ -4,5 +4,5 @@ dynamic-programming/.vscode/settings.json
 dynamic-programming/cf.cpp
 *.prob
 sliding window,pref sum,greedy/tempCodeRunnerFile.cpp
-*.cpp
+# *.cpp
 *.json
