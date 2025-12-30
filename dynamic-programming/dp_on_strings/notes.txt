@@ -1,0 +1,6 @@
+-> for longest palindromic subseq:
+        Lcs(str,reverse str)
+->minimum insertions to make palindrome:
+        n-Lcs(s,rev(s))
+->min insertions,deletions to make strA to strB:
+        n+m-2*lcs(a,b)
