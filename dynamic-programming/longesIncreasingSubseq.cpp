@@ -15,6 +15,41 @@ int f(vector<int> &nums,int i,int prev,vector<vector<int>> &dp){
         vector<vector<int>> dp(n,vector<int>(n+1,-1));
         return f(nums,0,0,dp);
     }
+    vector<int> printing(vector<int> &nums){// TC=>O(n^2) , sc=> O(n)
+        int n=nums.size();
+       vector<int> dp(n,1);//dp[i]=len(lis) ending at i
+       vector<int> child(n,0);
+       for(int i=0;i<n ;i++) child[i]=i;
+       for(int i=1;i<n;i++){// optimal tabulation
+        
+        for(int j=0;j<i;j++){
+            
+            if(nums[j]<nums[i] && 1+dp[j]>dp[i]) {// if nums[j] able to be prev of nums[i] we consider it
+                dp[i]=1+dp[j];
+                child[i]=j;// child pointers to backtrac
+            }
+
+        }
+       }
+   
+       int ind=0;
+       for(int i=1;i<n;i++){
+        if(dp[i]>dp[ind]) ind=i;
+       }
+
+       vector<int> ans;
+      
+       while(true){
+            ans.push_back(nums[ind]);
+            if(ind== child[ind]) break; // if child points to it self end
+            ind=child[ind];
+       }
+
+       reverse(ans.begin(),ans.end());
+
+
+       return ans;
+    }
     int lengthOfLIS2(vector<int>& nums) {//Tabulaton
         int n = nums.size();
         vector<vector<int>> dp(n+1, vector<int>(n + 1, 0));
@@ -28,9 +63,13 @@ int f(vector<int> &nums,int i,int prev,vector<vector<int>> &dp){
                  dp[i][prev] = max(pick, notpick);
             }
         }
+
+        
         return dp[0][0];
     }
-    int lengthOfLIS(vector<int>& nums) {//space Optimization
+
+    
+    int lengthOfLIS3(vector<int>& nums) {//space Optimization
         int n = nums.size();
         // vector<vector<int>> dp(n+1, vector<int>(n + 1, 0));
         vector<int> prv(n+1,0);
@@ -50,6 +89,10 @@ int f(vector<int> &nums,int i,int prev,vector<vector<int>> &dp){
     }
 
 int main (){
-    
+    vector<int> nums ={10,9,2,5,3,7,101,18};
+    vector<int> ans=printing(nums);
+
+    for(int x:ans) cout<<x<<' ';
+    cout<<endl;
     return 0;
 }
