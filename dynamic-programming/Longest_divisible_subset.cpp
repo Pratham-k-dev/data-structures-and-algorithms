@@ -18,7 +18,7 @@ using namespace std;
                     1 + dp[j] > dp[i]) { // if nums[j] able to be prev of
                                          // nums[i] we consider it
                     dp[i] = 1 + dp[j];
-                    child[i] = j; // child pointers to backtrac
+                    child[i] = j; // child pointers to backtrack
                 }
             }
         }
