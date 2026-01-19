@@ -1,3 +1,4 @@
+//https://leetcode.com/problems/burst-balloons/
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -31,8 +32,8 @@ public:
         return f(1, nums.size(), nums, dp);
     }
 
-    int maxCoins(vector<int> &nums)
-    {
+    int maxCoins2(vector<int> &nums)
+    {//Tabulation
         nums.push_back(1);
         nums.insert(nums.begin(), 1);
         int n = nums.size();
