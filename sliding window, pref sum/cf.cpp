@@ -17,6 +17,26 @@ int main (){
 ios::sync_with_stdio(false);
 cin.tie(0);
 tc(){
+    int n,k;
+    cin>>n>>k;
+    vi a(n),fr(n+1,0);
+    int fl=0;
+    f(i,0,n){
+        cin>>a[i];
+        if(a[i]>k) fl=1;
+        fr[a[i]]++;
+    }
+
+    int i=0,m=0;
+    while(i<k && fr[i]){
+        i++;
+        m++;
+    }
+    if(m==k ){
+        cout<<m-1<<endl;
+
+    }
+    else cout<<m<<endl;
     
 }
     return 0;
