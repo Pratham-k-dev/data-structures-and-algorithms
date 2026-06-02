@@ -2,6 +2,56 @@
 
 #include<bits/stdc++.h>
 using namespace std;
+
+class Solution2 {// better version 
+    bool Dfs(int i,vector<vector<int>> &adj, vector<int> &vis,vector<int> &pathvis, vector<int> &safe){
+
+        int f=1;
+        vis[i]=1;
+        pathvis[i]=1;
+        for(int x:adj[i]){
+            if(pathvis[x] ) {
+
+            f=0;
+            break;
+            } 
+            if(vis[x] && !safe[x]) {f=0;
+            break;}
+            if(vis[x]) continue;
+           
+            if(!Dfs(x,adj,vis,pathvis,safe)) {f=0;break;}
+            
+        }
+        pathvis[i]=0;
+        if(f) safe[i]=1;
+        return f;
+
+
+
+    }
+public:
+    vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
+        int n=graph.size();
+        vector<int> vis(n,0);
+        vector<int> pathvis(n,0);
+        vector<int> safe(n,0);
+        vector<int> ans;
+
+        for(int i=0;i<n;i++){
+            if(vis[i])continue;
+
+            Dfs(i,graph,vis,pathvis,safe);
+        }
+
+        for(int i=0;i<n;i++){
+            if(safe[i]) ans.push_back(i);
+        }
+
+        return ans;
+
+        
+    }
+};
 class Solution {
     
   
