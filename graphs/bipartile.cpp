@@ -52,7 +52,7 @@ public:
                             level[j] = l;
                         }
                         else if (level[j] != l - 2 && level[j] != l)
-                        { // if its not a parant and cycle doesnt meet at same level its an odd numbered cycle
+                        { // if its not a parent and cycle doesnt meet at same level its an odd numbered cycle
 
                             return false;
                         }
